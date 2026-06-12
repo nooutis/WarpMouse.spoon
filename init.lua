@@ -59,8 +59,10 @@ function WarpMouse:start()
 
     local reverse = self.reverseScreens and -1 or 1
     table.sort(self.screens, function(a, b)
-        -- sort list by screen postion top to bottom
-        return reverse * select(2, a:position()) < select(2, b:position())
+        -- sort list by screen position left to right
+        local ax = a:position() or 0
+        local bx = b:position() or 0
+        return reverse * ax < bx
     end)
 
     for i, screen in ipairs(self.screens) do
